@@ -87,10 +87,12 @@ const Invoice = () => {
          // eslint-disable-next-line
     },[location])
 
+    
+
 
     const getTotalCount = async() => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_API}/invoices/count?searchQuery=${user?.result?.sub}`);
+          const response = await axios.get(`${process.env.REACT_APP_API}invoices/count?searchQuery=${user?.result?.sub}`);
         //   console.log(response.data);
         //Get total count of invoice from the server and increment by one to serialized numbering of invoice
         setInvoiceData({...invoiceData, invoiceNumber: (Number(response.data) + 1).toString().padStart(3, '0')})
@@ -162,6 +164,8 @@ const Invoice = () => {
         setInvoiceData({...invoiceData, items: values})
         
     }
+
+    
 
     useEffect(() => {
             //Get the subtotal
@@ -276,7 +280,7 @@ const Invoice = () => {
                 
                 <Grid container justifyContent="space-between" >
                     <Grid item>
-                        <div><p style={{fontSize:'3rem', padding:'2rem'}}>LiveBottom Trucking</p></div>                        
+                        <div><p style={{fontSize:'3rem', padding:'2rem'}}>BlackSparrow Trucking</p></div>                        
                     </Grid>
                     <Grid item>
                         <InvoiceType type={type} setType={setType} />

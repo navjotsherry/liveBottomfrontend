@@ -100,7 +100,7 @@ const InvoiceDetails = () => {
             setCurrency(invoice.currency)
             setSubTotal(invoice.subTotal)
             setTotal(invoice.total)
-            setCompany(invoice?.businessDetails?.data?.data || {name:'LiveBottom Trucking'})
+            setCompany(invoice?.businessDetails?.data?.data || {name:'BlackSparrow Trucking'})
            
         }
     }, [invoice])
@@ -118,7 +118,7 @@ const InvoiceDetails = () => {
 
   const createAndDownloadPdf = () => {
     setDownloadStatus('loading')
-    axios.post(`${process.env.REACT_APP_API}/create-pdf`, 
+    axios.post(`${process.env.REACT_APP_API}create-pdf`, 
     { name: invoice.client.name,
       address: invoice.client.address,
       phone: invoice.client.phone,
@@ -137,7 +137,7 @@ const InvoiceDetails = () => {
       balanceDue: toCommas(total - totalAmountReceived),
       company: company,
   })
-      .then(() => axios.get(`${process.env.REACT_APP_API}/fetch-pdf`, { responseType: 'blob' }))
+      .then(() => axios.get(`${process.env.REACT_APP_API}fetch-pdf`, { responseType: 'blob' }))
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
@@ -150,7 +150,7 @@ const InvoiceDetails = () => {
   const sendPdf = (e) => {
     e.preventDefault()
     setSendStatus('loading')
-    axios.post(`${process.env.REACT_APP_API}/send-pdf`, 
+    axios.post(`${process.env.REACT_APP_API}send-pdf`, 
     { name: invoice.client.name,
       address: invoice.client.address,
       phone: invoice.client.phone,
